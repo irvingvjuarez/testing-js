@@ -10,10 +10,10 @@ describe("Test for the Books service", () => {
 
 	describe("Tests for getBooks method of the BooksService instance", () => {
 
-		test("Making sure the books.length is correct", () => {
+		test("Making sure the books.length is correct", async () => {
 			// Act - Making an action with the exported service
-			const books = service.getBooks()
-			console.log(books)
+			const books = await service.getBooks()
+			console.log({ books })
 
 			// Assert
 			expect(books.length).toEqual();
