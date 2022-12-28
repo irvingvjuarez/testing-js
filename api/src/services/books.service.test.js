@@ -9,10 +9,14 @@ describe("Test for the Books service", () => {
 	})
 
 	describe("Tests for getBooks method of the BooksService instance", () => {
-		// Act - Making an action with the exported service
-		const books = service.getBooks()
 
-		// Assert
-		expect(books.length).toEqual();
+		test("Making sure the books.length is correct", () => {
+			// Act - Making an action with the exported service
+			const books = service.getBooks()
+			console.log(books)
+
+			// Assert
+			expect(books.length).toEqual();
+		})
 	})
 })
