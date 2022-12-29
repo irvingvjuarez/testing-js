@@ -11,12 +11,15 @@ const fakeBooks = [
 	}
 ]
 
-const MongoLibStub = {
-	getAll: () => fakeBooks,
-	create: () => {}
-}
+const mockGetAll = jest.fn();
 
-jest.mock("../lib/mongo.lib", () => jest.fn().mockImplementation(() => MongoLibStub))
+// const MongoLibStub = {
+// }
+
+jest.mock("../lib/mongo.lib", () => jest.fn().mockImplementation(() => ({
+	getAll: mockGetAll,
+	create: () => {}
+})))
 
 describe("Test for the Books service", () => {
 	let service
@@ -24,11 +27,15 @@ describe("Test for the Books service", () => {
 	beforeEach(() => {
 		// Arrange
 		service = new BooksService();
+		jest.clearAllMocks();
 	})
 
 	describe("Tests for getBooks method of the BooksService instance", () => {
 
 		test("Making sure the books.length is correct", async () => {
+			// Arrange
+			mockGetAll.mockResolvedValue(fakeBooks);
+
 			// Act - Making an action with the exported service
 			const books = await service.getBooks();
 
