@@ -41,6 +41,24 @@ describe("Test for the Books service", () => {
 
 			// Assert
 			expect(books.length).toEqual(2);
+
+			// Using the spyind function to track getAll method
+			expect(mockGetAll).toHaveBeenCalled();
+			expect(mockGetAll).toHaveBeenCalledWith("books", undefined)
+		})
+
+		test("Making sure the first book title is the expected", async () => {
+			// Arrange
+			mockGetAll.mockResolvedValue([{
+				_id: 1,
+				name: "Harry Potter"
+			}])
+
+			// Act
+			const books = await service.getBooks();
+
+			// Assert
+			expect(books[0].name).toBe("Harry Potter")
 		})
 	})
 })
