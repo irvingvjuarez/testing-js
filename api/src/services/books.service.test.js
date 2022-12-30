@@ -1,17 +1,6 @@
 const { getBooks } = require("../fakes/books.fake");
 const BooksService = require("./books.service");
 
-const fakeBooks = [
-	{
-		_id: 1,
-		name: "21 lessons for the XXI century"
-	},
-	{
-		_id: 2,
-		name: "Population explosion"
-	}
-]
-
 const mockGetAll = jest.fn();
 
 // const MongoLibStub = {
