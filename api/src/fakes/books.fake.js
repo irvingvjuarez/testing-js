@@ -6,6 +6,15 @@ const getSingleBook = () => ({
 	price: faker.commerce.price()
 });
 
+const getBooks = (size = 10) => {
+	const books = new Array(size)
+		.fill({})
+		.map(_book => getSingleBook())
+
+	return books
+}
+
 module.exports = {
-	getSingleBook
+	getSingleBook,
+	getBooks
 }

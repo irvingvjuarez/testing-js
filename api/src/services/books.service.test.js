@@ -1,3 +1,4 @@
+const { getBooks } = require("../fakes/books.fake");
 const BooksService = require("./books.service");
 
 const fakeBooks = [
@@ -32,33 +33,15 @@ describe("Test for the Books service", () => {
 
 	describe("Tests for getBooks method of the BooksService instance", () => {
 
-		test("Making sure the books.length is correct", async () => {
+		test("Making sure the first books length equals 10", async () => {
 			// Arrange
-			mockGetAll.mockResolvedValue(fakeBooks);
-
-			// Act - Making an action with the exported service
-			const books = await service.getBooks();
-
-			// Assert
-			expect(books.length).toEqual(2);
-
-			// Using the spyind function to track getAll method
-			expect(mockGetAll).toHaveBeenCalled();
-			expect(mockGetAll).toHaveBeenCalledWith("books", undefined)
-		})
-
-		test("Making sure the first book title is the expected", async () => {
-			// Arrange
-			mockGetAll.mockResolvedValue([{
-				_id: 1,
-				name: "Harry Potter"
-			}])
+			mockGetAll.mockResolvedValue(getBooks())
 
 			// Act
 			const books = await service.getBooks();
 
 			// Assert
-			expect(books[0].name).toBe("Harry Potter")
+			expect(books.length).toBe(10)
 		})
 	})
 })
